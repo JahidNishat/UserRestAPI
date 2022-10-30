@@ -11,5 +11,8 @@ namespace UserAPI.DB
         }
 
         public DbSet<UserInfo> Users { get; set; }
+
+        public DbSet<Tag> Tag { get; set; }
+
     }
 }
