@@ -25,5 +25,24 @@ namespace UserAPI.Controllers
             }
             return Ok(userInfo);
         }
+
+        [HttpGet]
+        [Route("id")]
+        public IActionResult GetUserById(long id)
+        {
+            var user = db.Users.Find(id);
+            var viewUser = new ViewUserModel();
+
+            if (user != null)
+            {
+                viewUser.Id = user.Id;
+                viewUser.Name = user.FirstName + " " + user.LastName;
+                viewUser.Phone = user.Phone;
+
+                return Ok(viewUser);
+            }
+
+            else return BadRequest("Invalid ID");
+        }
     }
 }
