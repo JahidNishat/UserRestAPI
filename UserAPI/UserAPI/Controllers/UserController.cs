@@ -80,8 +80,6 @@ namespace UserAPI.Controllers
             var allTag = db.Tag.ToList();
             var filteredTags = new List<Tag>();
 
-
-
             if (allTag != null)
             {
                 foreach (var item in allTag)
@@ -96,7 +94,19 @@ namespace UserAPI.Controllers
             var result = new List<UserTagViewModel>();
             var userIds = filteredTags.Select(x => x.UserId).Distinct().ToList();
 
-            
+            foreach(var item in userIds)
+            {
+                var tempRes = new UserTagViewModel();
+                var tagName = db.Tag.ToList().Where(x => x.UserId == item).Select(x => x.TagName).ToList();
+
+                var user = db.Users.Find(item);
+
+                tempRes.Id = user.Id;
+                tempRes.Name = user.FirstName + " " + user.LastName;
+                tempRes.Tags = tagName;
+
+                result.Add(tempRes);
+            }    
 
             return Ok(result);
         }

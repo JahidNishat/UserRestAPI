@@ -12,8 +12,8 @@ using UserAPI.DB;
 namespace UserAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221030105213_First")]
-    partial class First
+    [Migration("20221031092726_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
